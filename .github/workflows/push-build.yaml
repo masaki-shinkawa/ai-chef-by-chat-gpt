@@ -22,11 +22,13 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_SECRET_KEY }}'
+
       - name: Setup Google Cloud
         uses: google-github-actions/setup-gcloud@main
-        with:
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_SECRET_KEY }}
-          project_id: ai-chef-by-chat-gpt
 
       - name: Configure docker for artifact registry
         run: |
