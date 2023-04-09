@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./backend
+    container_name: ai-chef
+    image: ai-chef
+    ports:
+      - "8000:8000"
