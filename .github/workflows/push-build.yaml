@@ -1,0 +1,45 @@
+name: Build and Push Image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  build-and-publish:
+    name: Build and Push docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Google Cloud
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_SECRET_KEY }}
+          project_id: ai-chef-by-chat-gpt
+
+      - name: Configure docker for artifact registry
+        run: |
+          gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+
+      - name: set TAG
+        run: |
+          echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
+
+      - name: Build
+        run: |
+          docker build -t asia-northeast1-docker.pkg.dev/ai-chef-by-chat-gpt/ai-chef-backend/backend:${{ env.TAG }} ./
+
+      - name: Push
+        run: |
+          docker push asia-northeast1-docker.pkg.dev/ai-chef-by-chat-gpt/ai-chef-backend/backend:${{ env.TAG }}
