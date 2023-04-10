@@ -12,8 +12,8 @@ export const BorderList = ({ items, mode }: BorderListProps) => {
     <dl className={`grid ${css}`}>
       {items.map((item) => (
         <>
-          <dt className="border-b-2 mt-1 pr-4">{item.key}</dt>
-          <dd className="border-b-2 mt-1">{item.value}</dd>
+          <dt key={item.key} className="border-b-2 mt-1 pr-4">{item.key}</dt>
+          <dd key={item.value} className="border-b-2 mt-1">{item.value}</dd>
         </>
       ))}
     </dl>
