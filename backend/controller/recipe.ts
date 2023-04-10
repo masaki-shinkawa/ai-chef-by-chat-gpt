@@ -30,7 +30,7 @@ const createRecipe = async (
     if (!value) return resolve({});
     if (value instanceof Promise) {
       return value.then((value) => {
-        resolve(JSON.parse(value));
+        resolve(value);
       });
     }
     return resolve({});
