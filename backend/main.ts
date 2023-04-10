@@ -3,7 +3,7 @@ import {
   Context,
   Response,
 } from "https://deno.land/x/oak@v12.1.0/mod.ts";
-import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 import "https://deno.land/std@0.182.0/dotenv/load.ts";
 import { OpenAIApi, Configuration } from "npm:openai";
 import { menuController } from "./controller/menu.ts";
@@ -48,11 +48,11 @@ const routing = async (ctx: Context): Promise<ControllerResult> => {
 };
 
 // corsを有効化
-app.use(oakCors({ origin: "http://localhost:3000" }));
+app.use(oakCors({ origin: Deno.env.get("ACCESS_CONTROL_ALLOW_ORIGIN") }));
 app.use(async (ctx) => {
   const result = await routing(ctx);
   ctx.response = createResponse(ctx, result);
 });
 
-console.log("app start")
+console.log("app start");
 await app.listen({ port: Number(Deno.env.get("PORT") || 8000) });
