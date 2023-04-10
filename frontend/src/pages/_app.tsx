@@ -1,4 +1,4 @@
-import { LayoutDefault } from "@/components/layout/Default";
+import { LayoutDefault } from "@/components/layout/default";
 import { SWRConfig } from "swr";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
