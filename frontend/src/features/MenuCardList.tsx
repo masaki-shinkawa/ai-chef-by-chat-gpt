@@ -79,7 +79,6 @@ export const MenuCardList = ({ menu, fetchProcedure }: MenuCardListProps) => {
                     <div className="p-2">
                       <p className="font-bold">調味料</p>
                       <BorderList
-                        key={`${name}-seasonings`}
                         items={seasonings.map(
                           ({ name: key, amountUnit: value }) => ({ key, value })
                         )}
@@ -88,7 +87,6 @@ export const MenuCardList = ({ menu, fetchProcedure }: MenuCardListProps) => {
                     <div className="p-2">
                       <p className="font-bold">食材</p>
                       <BorderList
-                        key={`${name}-ingredients`}
                         items={ingredients.map(
                           ({ name: key, amountUnit: value }) => ({ key, value })
                         )}

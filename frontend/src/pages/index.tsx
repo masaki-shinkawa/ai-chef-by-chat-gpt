@@ -39,126 +39,13 @@ export default function Home(props: MasterResponse) {
   const [seasonings, setSeasonings] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [errors, setErrors] = useState<ValidationError | null>(null);
-  const [menu, setMenu] = useState<Menu>({
-    name: "肉じゃが定食",
-    dishes: [
-      {
-        name: "肉じゃが",
-        seasonings: [
-          {
-            name: "醤油",
-            amountUnit: "大さじ1",
-          },
-          {
-            name: "みりん",
-            amountUnit: "大さじ1",
-          },
-          {
-            name: "砂糖",
-            amountUnit: "大さじ1",
-          },
-          {
-            name: "顆粒だし",
-            amountUnit: "小さじ1/2",
-          },
-          {
-            name: "水",
-            amountUnit: "100ml",
-          },
-        ],
-        ingredients: [
-          {
-            name: "ひき肉",
-            amountUnit: "100g",
-          },
-          {
-            name: "じゃがいも",
-            amountUnit: "2個",
-          },
-          {
-            name: "人参",
-            amountUnit: "1本",
-          },
-          {
-            name: "玉ねぎ",
-            amountUnit: "1個",
-          },
-          {
-            name: "油",
-            amountUnit: "適量",
-          },
-        ],
-      },
-      {
-        name: "ピーマンの炒め物",
-        seasonings: [
-          {
-            name: "醤油",
-            amountUnit: "大さじ1",
-          },
-          {
-            name: "オリーブオイル",
-            amountUnit: "大さじ1/2",
-          },
-          {
-            name: "塩",
-            amountUnit: "適量",
-          },
-          {
-            name: "コショウ",
-            amountUnit: "少々",
-          },
-        ],
-        ingredients: [
-          {
-            name: "ピーマン",
-            amountUnit: "1個",
-          },
-          {
-            name: "玉ねぎ",
-            amountUnit: "1/4個",
-          },
-        ],
-      },
-      {
-        name: "グレープフルーツと卵のサラダ",
-        seasonings: [
-          {
-            name: "マヨネーズ",
-            amountUnit: "大さじ1",
-          },
-          {
-            name: "レモン汁",
-            amountUnit: "小さじ1/2",
-          },
-          {
-            name: "塩",
-            amountUnit: "少々",
-          },
-          {
-            name: "コショウ",
-            amountUnit: "少々",
-          },
-        ],
-        ingredients: [
-          {
-            name: "グレープフルーツ",
-            amountUnit: "1/2個",
-          },
-          {
-            name: "卵",
-            amountUnit: "1個",
-          },
-        ],
-      },
-    ],
-  });
-  // const [menu, setMenu] = useState<Menu>();
+  const [menu, setMenu] = useState<Menu>();
 
+  
   useEffect(() => {
     const seasonings = getItem<string[] | null>("seasonings", null);
     setSeasonings(seasonings ?? props.seasonings);
-    const ingredients = getItem<string[]>("ingredients", []);
+    const ingredients = getItem<string[] | null>("ingredients", null);
     setIngredients(ingredients ?? props.ingredients);
   }, [props.ingredients, props.seasonings]);
 
