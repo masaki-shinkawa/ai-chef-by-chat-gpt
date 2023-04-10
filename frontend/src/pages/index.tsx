@@ -24,7 +24,7 @@ const createCustomOptions = (labels: string[]): CustomOption[] => {
   return labels.map((label, index) => ({
     label,
     value: index,
-    checked: false,
+    checked: index === 0,
   }));
 };
 
@@ -124,6 +124,7 @@ export default function Home(props: MasterResponse) {
   };
 
   const fetchProcedure = async (index: number) => {
+    if(!menu) return
     const targetDishes = menu.dishes[index];
     const body = { menu: JSON.stringify(targetDishes) };
     // 手順は後でも良いので非同期
