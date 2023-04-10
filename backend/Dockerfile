@@ -1,6 +1,6 @@
 FROM denoland/deno
 
-EXPOSE 8000
+EXPOSE ${PORT:-8000}
 
 WORKDIR /app
 

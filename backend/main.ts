@@ -54,4 +54,5 @@ app.use(async (ctx) => {
   ctx.response = createResponse(ctx, result);
 });
 
+console.log("app start")
 await app.listen({ port: Number(Deno.env.get("PORT") || 8000) });
