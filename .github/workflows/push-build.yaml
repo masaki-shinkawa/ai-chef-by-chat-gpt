@@ -11,6 +11,9 @@ defaults:
   run:
     working-directory: backend
 
+runs:
+  using: 'node16'
+
 jobs:
   build-and-publish:
     name: Build and Push docker image
