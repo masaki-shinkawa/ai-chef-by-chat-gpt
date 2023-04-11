@@ -28,7 +28,7 @@ jobs:
           credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_SECRET_KEY }}'
 
       - name: Setup Google Cloud
-        uses: google-github-actions/setup-gcloud@main
+        uses: google-github-actions/setup-gcloud@v1
 
       - name: Configure docker for artifact registry
         run: |
