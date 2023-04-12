@@ -29,9 +29,7 @@ const createRecipe = async (
     const value = ctx.request.body().value;
     if (!value) return resolve({});
     if (value instanceof Promise) {
-      return value.then((value) => {
-        resolve(value);
-      });
+      return value.then((value) => resolve(value));
     }
     return resolve({});
   }).catch(() => ({}));

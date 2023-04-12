@@ -26,8 +26,8 @@ const createMenu = async (
   openAIApi: OpenAIApi
 ): Promise<ControllerResult> => {
   const Contents = z.object({
-    seasonings: z.string().array(),
-    ingredients: z.string().array(),
+    seasonings: z.array(z.string().max(20)),
+    ingredients: z.array(z.string().max(20)),
     categories: z.string().array(),
     timing: z.string(),
     persons: z.number(),
@@ -37,9 +37,7 @@ const createMenu = async (
     const value = ctx.request.body().value;
     if (!value) return resolve({});
     if (value instanceof Promise) {
-      return value.then((value) => {
-        resolve(value);
-      });
+      return value.then((value) => resolve(value));
     }
     return resolve({});
   }).catch(() => ({}));
@@ -61,8 +59,8 @@ const updateMenu = async (
   openAIApi: OpenAIApi
 ): Promise<ControllerResult> => {
   const Contents = z.object({
-    seasonings: z.string().array(),
-    ingredients: z.string().array(),
+    seasonings: z.array(z.string().max(20)),
+    ingredients: z.array(z.string().max(20)),
     categories: z.string().array(),
     persons: z.number(),
     timing: z.string(),
@@ -73,9 +71,7 @@ const updateMenu = async (
     const value = ctx.request.body().value;
     if (!value) return resolve({});
     if (value instanceof Promise) {
-      return value.then((value) => {
-        resolve(value);
-      });
+      return value.then((value) => resolve(value));
     }
     return resolve({});
   }).catch(() => ({}));
