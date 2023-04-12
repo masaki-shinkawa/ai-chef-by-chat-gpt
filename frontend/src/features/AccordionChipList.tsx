@@ -1,9 +1,10 @@
 import { BasicAccordion } from "@/components/accordion/BasicAccordion";
 import { ChipListCard } from "@/components/card/ChipListCard";
+import { string } from "yup";
 
 interface AccordionChipListProps {
-  label: string
-  placeholder: string
+  label: string;
+  placeholder: string;
   chips: string[];
   onChange: (chip: string[]) => void;
 }
@@ -14,9 +15,14 @@ export const AccordionChipList = ({
   chips,
   onChange,
 }: AccordionChipListProps) => {
-  const addChip = (seasoningName: string) => {
-    if (!seasoningName || chips.includes(seasoningName)) return;
-    onChange([...chips, seasoningName]);
+  const addChip = (chip: string) => {
+    if (!chip || chips.includes(chip)) return;
+    try {
+      string().max(20).validateSync(chip)
+    } catch (error) {
+      return 
+    }
+    onChange([...chips, chip]);
   };
 
   const deleteChip = (index: number) => {

@@ -89,9 +89,9 @@ export default function Home(props: MasterResponse) {
     const schema = object({
       persons: number().required(),
       timing: string().required(),
-      categories: array(string().required()).required(),
-      seasonings: array(string().required()).required(),
-      ingredients: array(string().required()).required(),
+      categories: array(string().max(20).required()).required(),
+      seasonings: array(string().max(20).required()).required(),
+      ingredients: array(string().max(20).required()).required(),
     });
 
     const timingsValue = timings.find((timing) => timing.checked)?.label;
